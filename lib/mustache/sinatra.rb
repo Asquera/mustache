@@ -167,6 +167,7 @@ class Mustache
 
         # Set the template path and return our class.
         klass.template_path = options[:templates] if options[:templates]
+        klass.view_namespace = options[:namespace] if options[:namespace]
         klass
       end
     end

@@ -150,7 +150,13 @@ class Mustache
   # The template name is the Mustache template file without any
   # extension or other information. Defaults to `class_name`.
   def self.template_name
-    @template_name || underscore
+    if (classes = classify(name)).include? "Views"
+      namespace = classify(view_namespace.name) + ["Views"]
+    else
+      namespace = classify(view_namespace.name)
+    end
+    path = classes - namespace
+    @template_name || underscore(path.join("::"))
   end
 
   def self.template_name=(template_name)
@@ -211,7 +217,7 @@ class Mustache
     if name != classify(name.to_s)
       names = classify(name.to_s)
     end
-
+    
     # Emptiness begets emptiness.
     if names.empty?
       return Mustache
