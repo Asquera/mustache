@@ -187,7 +187,7 @@ end_section
   end
 
   def test_classify
-    assert_equal 'TemplatePartial', Mustache.classify('template_partial')
+    assert_equal 'TemplatePartial', Mustache.classify('template_partial').join
   end
 
   def test_underscore
@@ -200,7 +200,7 @@ end_section
   end
 
   def test_namespaced_underscore
-    assert_equal 'stat_stuff', Mustache.underscore('Views::StatStuff')
+    assert_equal 'views/stat_stuff', Mustache.underscore('Views::StatStuff')
   end
 
   def test_render

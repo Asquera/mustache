@@ -27,6 +27,11 @@ class AutoloadingTest < Test::Unit::TestCase
     klass = Mustache.view_class('')
     assert_equal Mustache, klass
   end
+  
+  def test_autoload_from_folder
+    klass = Mustache.view_class("Test::Klass")
+    assert_equal Test::Klass, klass
+  end
 
   def test_namespaced_autoload
     Mustache.view_namespace = TestViews
