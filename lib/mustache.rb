@@ -214,8 +214,13 @@ class Mustache
   #   Mustache.view_namespace = Hurl::Views
   #   Mustache.view_class(:Partial) # => Hurl::Views::Partial
   def self.view_class(name)
-    if name != classify(name.to_s)
-      names = classify(name.to_s)
+    name = name.to_s
+    if "/" == name[0]
+      name[0] = ""
+    end
+    
+    if name != classify(name)
+      names = classify(name)
     end
     
     # Emptiness begets emptiness.
